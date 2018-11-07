@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import logo from "./410-clinking-beer-mugs.png";
 import "./App.css";
 import CocktailsContainer from "./components/CocktailsContainer";
 

@@ -1,60 +1,55 @@
 import React, { Component } from "react";
-
+const cocktails_api = "http://localhost:3000/api/v1/cocktails";
 class Form extends Component {
-  state = {
-    cocktail: {
+  constructor() {
+    super();
+
+    this.state = {
       name: "",
       description: "",
       instructions: "",
-      proportions: [
-        {
-          ingredient: "",
-          quantity: ""
-        }
-      ]
-    }
+      proportions: [{ ingredient: "", quantity: "" }]
+    };
+  }
+
+  resetState = () => {
+    return {
+      name: "",
+      description: "",
+      instructions: "",
+      proportions: [{ ingredient: "", quantity: "" }]
+    };
   };
 
   addProportions = e => {
+    e.preventDefault();
     console.log("onClickAddInput", e.target, this.state);
     this.setState(prevState => ({
-      cocktail: {
-        ...prevState.cocktail,
-        proportions: [
-          {
-            ingredient: "",
-            quantity: ""
-          }
-        ]
-      }
+      proportions: [...prevState.proportions, { ingredient: "", quantity: "" }]
     }));
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("onSubmit-event", e.target);
+
+    const data = { ...this.state };
+    fetch(cocktails_api, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(() => console.log("success submit", this.state))
+      .then(() => this.setState(this.resetState()));
   };
 
   handleChange = e => {
-    // console.log("handleChange", e.target.name);
+    console.log("handleChange", e.target.name);
     if (["ingredient", "quantity"].includes(e.target.name)) {
-      let state = { ...this.state };
-      let updatedProportions = [...state.cocktail.proportions];
-
-      this.setState({
-        cocktail: {
-          ...state.cocktail,
-          proportions: [
-            ...state.cocktail.proportions,
-            { [e.target.name]: e.target.value }
-          ]
-        }
-      });
-      debugger;
+      let proportions = [...this.state.proportions];
+      proportions[e.target.id][e.target.name] = e.target.value;
+      this.setState({ proportions }, console.log(this.state));
     } else {
-      this.setState({
-        cocktail: { ...this.state.cocktail, [e.target.name]: e.target.value }
-      });
+      this.setState({ [e.target.name]: e.target.value });
     }
   };
 
@@ -70,7 +65,7 @@ class Form extends Component {
         <input type="text" name="instructions" onChange={this.handleChange} />
         <h3>Proportions</h3>
 
-        {this.state.cocktail.proportions.map((val, idx) => {
+        {this.state.proportions.map((x, idx) => {
           return (
             <div key={idx} className="container" name="proportions">
               <p>
@@ -80,6 +75,7 @@ class Form extends Component {
                   type="text"
                   name="ingredient"
                   id={idx}
+                  value={this.state.proportions[idx].ingredient}
                   onChange={this.handleChange}
                 />
               </p>
@@ -91,6 +87,7 @@ class Form extends Component {
                   type="text"
                   name="quantity"
                   id={idx}
+                  value={this.state.proportions[idx].quantity}
                   onChange={this.handleChange}
                 />
               </p>

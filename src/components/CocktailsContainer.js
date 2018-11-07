@@ -4,6 +4,7 @@ import Form from "./Form";
 import CocktailDisplay from "./CocktailDisplay";
 
 const cocktails_api = "http://localhost:3000/api/v1/cocktails";
+
 class CocktailsContainer extends Component {
   state = {
     cocktails: [],
@@ -20,7 +21,11 @@ class CocktailsContainer extends Component {
     fetch(cocktails_api)
       .then(resp => resp.json())
       .then(
-        data => this.setState({ cocktails: data }),
+        data =>
+          this.setState({
+            cocktails: data,
+            clickedCocktail: data[parseInt(Math.random() * 300)]
+          }),
         () => console.log(this.state.cocktails)
       );
   };
