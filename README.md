@@ -5,7 +5,7 @@
 RESTful routes have been set up for you at the following links:
 
 Cocktails:
-https://react-boozer-backend.herokuapp.com/api/v1/cocktails
+https://react-boozer-backend.herokuapp.com/api/v1/**cocktails**
 
 Ingredients:
 https://react-boozer-backend.herokuapp.com/api/v1/ingredients
@@ -13,15 +13,15 @@ https://react-boozer-backend.herokuapp.com/api/v1/ingredients
 Proportions:
 https://react-boozer-backend.herokuapp.com/api/v1/proportions
 
-*Clarification on the Domain: An Ingredient is a record that indicates, for example, "Mint Leaves" or "Bitters" is something that many cocktails may have. A Proportion is a join table where each record indicates, a specific cocktail, is made with a specific ingredient, with a certain amount. For example, a Mojito is made with 4-5 mint leaves.*
+_Clarification on the Domain: An Ingredient is a record that indicates, for example, "Mint Leaves" or "Bitters" is something that many cocktails may have. A Proportion is a join table where each record indicates, a specific cocktail, is made with a specific ingredient, with a certain amount. For example, a Mojito is made with 4-5 mint leaves._
 
 ## Part One - Render and Click on Cocktails
 
-In CocktailsContainer, you should fetch a list of cocktails from the API and render out the cocktail names.
+In CocktailsContainer, you should fetch a list of cocktails from the API and render out the cocktail names in CocktailsList.
 
-Next, each cocktail name should be a clickable link. Clicking on this link should render out a detail view of the cocktail including the name, description, instructions, and proportions.
+Next, each cocktail name should be a clickable link. Clicking on this link should render out a detail view of the cocktail including the name, description, instructions, and proportions in Cocktail.
 
-*BONUS - use react-router-dom to update the URL as you click on each particular cocktail. Our goal is to have a "Master-Detail" layout - our list should be ever-present on the left side and our detail view should take up two thirds of the screen.*
+_BONUS - use react-router-dom to update the URL as you click on each particular cocktail. Our goal is to have a "Master-Detail" layout - our list should be ever-present on the left side and our detail view should take up two thirds of the screen._
 
 ## Part Two - Dynamic Form
 

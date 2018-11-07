@@ -17,11 +17,32 @@ button {
 }
 
 .container {
+  justify-content: flex-start;
   display: flex;
   flex-direction: row;
 }
 
 .container div {
+
   width: 40vw;
   margin: 0 10px;
+}
+
+#cocktail-display {
+  text-align: center;
+  width: 100%;
+}
+
+.form {
+  text-align: left;
+  width: 50%;
+}
+
+#cocktail-list {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  width: auto;
+  text-align: left;
+  overflow-y: scroll;
 }
